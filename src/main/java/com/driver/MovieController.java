@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/movies")
 public class MovieController {
+
     @Autowired
     MovieService movieService;
 
@@ -23,8 +24,8 @@ public class MovieController {
         movieService.addDirector(director);
         return new ResponseEntity<>("New Director added successfully" , HttpStatus.CREATED);
     }
-    @PostMapping("/add-movie-director-pair")
-    public ResponseEntity<String> addMovieDirector(@RequestParam String movie , @RequestParam String director){
+    @PutMapping("/add-movie-director-pair")
+    public ResponseEntity<String> addMovieDirector(@RequestParam("movie") String movie , @RequestParam("director") String director){
         movieService.createMovieDirectorPair(movie , director);
         return new ResponseEntity<>("New movie-director pair added successfully ", HttpStatus.CREATED);
     }
@@ -43,7 +44,7 @@ public class MovieController {
         return new ResponseEntity<>(movieService.findAllMovies() , HttpStatus.FOUND);
     }
     @DeleteMapping("/delete-director-by-name")
-    public ResponseEntity<String> deleteDirectorByName(@RequestParam String director){
+    public ResponseEntity<String> deleteDirectorByName(@RequestParam("director") String director){
         movieService.deleteDirector(director);
         return new ResponseEntity<>(director + " removed succesfully" , HttpStatus.OK);
     }
