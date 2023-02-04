@@ -25,9 +25,10 @@ public class MovieService {
     public Director findDirector(String directorName){
         return movieRepository.findDirector(directorName);
     }
-    public List<String> findMovieFromDirector(String director){
+    public List<String> findMoviesFromDirector(String director){
         return movieRepository.findMoviesFromDirector(director);
     }
+
     public List<String> findAllMovies(){
         return movieRepository.findAllMovies();
     }
